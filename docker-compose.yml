@@ -1,0 +1,21 @@
+
+
+
+services:
+ backend:
+   build: ./backend
+   container_name: neuroread-backend-container
+   ports:
+    - "5000:5000"
+   env_file:
+    - ./backend/.env
+   restart: always
+
+ frontend:
+   build: ./frontend
+   container_name: neuroread-frontend-container
+   ports:
+    - "5173:5173"
+   depends_on:
+    - backend
+   restart: always
